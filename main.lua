@@ -1,12 +1,17 @@
+--[[
+@Author: Ermano Arruda
+
+main file
+]]
+
 require 'torch'
 require 'nn'
-
 require 'DQN'
+-- disp = require ('plotting.init')
 
 local Environment = require 'environment'
 
 local quit = true
-
 
 function love.conf(t)
   t.releases = {
@@ -44,13 +49,17 @@ function love.load()
    s = env:getState()
    agent:setInitialState(s)
 
-
-
    speed_idx = 1
    steps_per_iter = {1,10,50,100,500,1000,10000,0}
 
    worst_tderr_avg = 0
+
+   --win = disp.plot(agent.average_reward_history, { labels={ 'Time Step', 'Reward' }, title='Average Reward' })
 end
+
+-- function draw_plot()
+--   win = disp.plot(agent.average_reward_history, { win = win })
+-- end
 
 function love.draw()
 
@@ -76,6 +85,8 @@ function love.draw()
   end
   love.graphics.print('Episilon: ' ..   agent.episilon, 10, 150)
 
+  --draw_plot()
+
 end
 
 
@@ -97,7 +108,6 @@ function love.update(dt)
       action = 2
    elseif love.keyboard.isDown("a") then
       
-      num = num + 1
       agent.eta = -1
     
    elseif love.keyboard.isDown("l") then
@@ -183,6 +193,8 @@ function love.update(dt)
 
 end
 
+
+
 function love.mousepressed(x, y, button, istouch)
    if button == 1 then
       --imgx = x - image:getWidth()/2 -- move image to where mouse clicked
@@ -198,14 +210,8 @@ end
 
 
 function love.quit()
-    if quit then
-        print("We are not ready to quit yet!")
-        quit = not quit
-    else
-        print("Thanks for playing. Please play again soon!")
-        return quit
-    end
-    return true
+    print("See you in a bit!")
+    return false
 end
 
 

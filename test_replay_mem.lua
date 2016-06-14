@@ -1,3 +1,10 @@
+--[[
+@Author: Ermano Arruda
+
+Testing replay memory
+]]
+
+
 require 'ReplayMemory'
 require 'DQN'
 

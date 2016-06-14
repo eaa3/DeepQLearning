@@ -1,3 +1,26 @@
+--[[
+@Author: Ermano Arruda
+
+DQNAgent implements the DQN algorithm proposed by Mnih et al
+https://www.cs.toronto.edu/%7Evmnih/docs/dqn.pdf
+
+This code is also based on the following resources:
+
+Deep Learning lectures by Nando de Freitas (I have to say these are truly good lectures)
+https://www.cs.ox.ac.uk/people/nando.defreitas/machinelearning/
+
+DeepMind Atari Deep Q Learner
+https://github.com/kuz/DeepMind-Atari-Deep-Q-Learner
+
+Andrej Karpathy Reinforcejs PuckWorld demo
+http://cs.stanford.edu/people/karpathy/reinforcejs/puckworld.html
+
+
+Off-topic materials:
+Object oriented with lua: https://github.com/torch/class
+
+]]
+
 require 'torch'
 require 'nn'
 require 'ReplayMemory'
@@ -46,6 +69,8 @@ function DQNAgent:__init(opt)
 
     self.replay_mem = ReplayMemory({state_dim=self.state_dim,n_actions=self.n_actions})
 
+    -- Question: how better can we get with different weight initialisation?
+    -- TODO: https://github.com/e-lab/torch-toolbox/blob/master/Weight-init/weight-init.lua
     self.w, self.dw = self.qnet:getParameters()
     self.dw:zero()
 
@@ -58,6 +83,7 @@ function DQNAgent:__init(opt)
     self.current_tderr = 0
 
     self.average_reward = -3
+    self.average_reward_history = {self.average_reward}
 
     self.s = torch.Tensor()
     self.a = nil
@@ -119,9 +145,9 @@ function DQNAgent:select_egreedy(qs)
 end
 
 function DQNAgent:select_prob(qs)
-    r = torch.uniform()
-    acc = 0
-    i = 1
+    local r = torch.uniform()
+    local acc = 0
+    local i = 1
     while r > acc and i < qs:size(1) do
         acc = acc + qs[i]
         i = i+1
@@ -168,9 +194,11 @@ function DQNAgent:perceive(obs)
     if self.r ~= nil then
 
         if self.average_reward == nil then
-            self.average_reward = r
+            self.average_reward = obs.r
         else
-            self.average_reward = self.average_reward * 0.999 + r * 0.001
+            self.average_reward = self.average_reward * 0.999 + obs.r * 0.001
+            --self.average_reward_history[self.n_steps] = {self.n_steps, math.random()}
+            --print("all right?" .. self.average_reward_history[self.n_steps][2])
         end
     
 
@@ -293,6 +321,11 @@ function DQNAgent:RMSPropUpdate(trans_batch,targets)
     self.lr = math.max(self.lr, self.lr_end)
 
     -- Adam, adaptation of Hinton's RMSprop (Geoff Hinton)
+    -- I discovered this update rule at https://github.com/kuz/DeepMind-Atari-Deep-Q-Learner
+    -- Some materials: http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf
+    --                 https://en.wikipedia.org/wiki/Stochastic_gradient_descent#RMSProp
+    --                 http://sebastianruder.com/optimizing-gradient-descent/index.html#rmsprop
+    -- TODO: make it clearer: https://github.com/torch/nn/blob/master/doc/training.md
     -- use gradients
     self.g:mul(0.95):add(0.05, self.dw)
     self.tmp:cmul(self.dw, self.dw)
@@ -328,7 +361,6 @@ function DQNAgent:qLearnMiniBatch()
 
         if self.n_steps%self.swap_target_qnet_every == 0 then
             self.target_qnet = self.qnet:clone('weight','bias')
-            --self.w, self.dw = self.qnet:getParameters()
         end
         
 

@@ -1,3 +1,9 @@
+--[[
+@Author: Ermano Arruda
+
+Testing the agent
+]]
+
 require 'DQN'
 
 

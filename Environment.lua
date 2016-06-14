@@ -1,7 +1,7 @@
 --[[
 @Author: Ermano Arruda
 
-An environment to play in with the PuckWorld
+An environment to play with the PuckWorld
 ]]
 
 require 'torch'

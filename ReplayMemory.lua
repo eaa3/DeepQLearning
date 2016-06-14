@@ -2,6 +2,7 @@
 @Author: Ermano Arruda
 
 An implementation of ReplayMemory for the DQN algorithm proposed by Mnih et al
+https://www.cs.toronto.edu/%7Evmnih/docs/dqn.pdf
 ]]
 
 
