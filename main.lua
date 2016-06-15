@@ -7,7 +7,7 @@ main file
 require 'torch'
 require 'nn'
 require 'DQN'
--- disp = require ('plotting.init')
+Plot = require ('plotting.slide_plot')
 
 local Environment = require 'environment'
 
@@ -52,14 +52,27 @@ function love.load()
    speed_idx = 1
    steps_per_iter = {1,10,50,100,500,1000,10000,0}
 
-   worst_tderr_avg = 0
 
-   --win = disp.plot(agent.average_reward_history, { labels={ 'Time Step', 'Reward' }, title='Average Reward' })
+   win_average_reward = nil
+   win_tderr = nil
+
+
 end
 
--- function draw_plot()
---   win = disp.plot(agent.average_reward_history, { win = win })
--- end
+function draw_plot()
+
+  if agent.average_reward_hist:count() > 0 then
+
+    win_average_reward = Plot.plot(agent.average_reward_hist,win_average_reward,{labels={"Time Step","Average Reward"},title="Reward Progress"})
+  end
+
+  if agent.tderr_hist:count() > 0 then
+
+    win_tderr = Plot.plot(agent.tderr_hist,win_tderr,{labels={"Time Step","TD Error"},title="TD Error Progress"})
+  end
+
+
+end
 
 function love.draw()
 
@@ -85,7 +98,7 @@ function love.draw()
   end
   love.graphics.print('Episilon: ' ..   agent.episilon, 10, 150)
 
-  --draw_plot()
+  draw_plot()
 
 end
 
@@ -112,7 +125,6 @@ function love.update(dt)
     
    elseif love.keyboard.isDown("l") then
       
-      num = num + 1
       agent.eta = 0.01
 
    elseif love.keyboard.isDown("1") then

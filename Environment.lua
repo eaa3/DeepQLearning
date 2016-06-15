@@ -65,7 +65,7 @@ function Environment:new(width,height)
     env.agent.fixture = love.physics.newFixture( env.agent.body, env.agent.shape, 1 )
     env.agent.fixture:setRestitution(0.05)
 
-    env.agent.sprite = love.graphics.newImage("arrow.jpg")
+    env.agent.sprite = love.graphics.newImage("arrow.png")
     env.agent.color = {r=14, g=47, b=193}
 
     env.prev_action = 1
@@ -155,15 +155,15 @@ function Environment:new(width,height)
     end
 
     function env:getState()
-        local px = self.agent.body:getX()/width -- - 0.5
-        local py = self.agent.body:getY()/height -- - 0.5
+        local px = self.agent.body:getX()/width - 0.5
+        local py = self.agent.body:getY()/height - 0.5
         local vx, vy = self.agent.body:getLinearVelocity()
 
-        local fpx = env.food.position.x/width -- - 0.5
-        local fpy = env.food.position.y/height -- - 0.5
+        local fpx = env.food.position.x/width - 0.5
+        local fpy = env.food.position.y/height - 0.5
 
-        local epx = env.enemy.position.x/width -- - 0.5
-        local epy = env.enemy.position.y/height -- - 0.5
+        local epx = env.enemy.position.x/width - 0.5
+        local epy = env.enemy.position.y/height - 0.5
         --{px, py, vx, vy, fpx, fpy, epx, epy} --
         --{px, py, vx/PPM, vy/PPM, fpx - px, fpy - py}
         --{px, py, vx/PPM, vy/PPM, fpx, fpy, epx, epy}
@@ -187,9 +187,9 @@ function Environment:new(width,height)
         self.prev_action = action
 
         -- World updates
-        env.world:update(0.05) 
-        --env.world:update(0.05) 
-        --env.world:update(dt) 
+        --env.world:update(0.025) 
+        --env.world:update(0.04) 
+        env.world:update(dt) 
         --env.world:update(dt) 
         --env.world:update(dt) -- gg
 

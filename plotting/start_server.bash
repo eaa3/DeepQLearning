@@ -1,0 +1,1 @@
+th -ldisplay.start 8000 0.0.0.0

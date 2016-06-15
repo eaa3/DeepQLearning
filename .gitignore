@@ -1,0 +1,9 @@
+*.7z
+cake.png
+init.lua
+plotting.lua
+example.lua
+.DS_Store
+*.pdf
+plots
+pretrained_models

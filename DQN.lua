@@ -24,6 +24,7 @@ Object oriented with lua: https://github.com/torch/class
 require 'torch'
 require 'nn'
 require 'ReplayMemory'
+require 'plotting.CircularBuffer'
 
 local DQNAgent = torch.class('DQNAgent')
 
@@ -33,17 +34,17 @@ function DQNAgent:__init(opt)
     self.state_dim = opt.state_dim
     self.n_actions = opt.n_actions
 
-    self.gamma = opt.gamma or 0.95
+    self.gamma = opt.gamma or 0.9
     self.eta = opt.eta or 0.001
 
     self.episilon = opt.episilon or 0.2
     self.eps_start = opt.eps_start or 0.2
     self.eps_end = opt.eps_end or 0.2--0.05
-    self.eps_end_t = opt.eps_end_t or 100000
+    self.eps_end_t = opt.eps_end_t or 500000
 
     self.n_replay = opt.n_replay or 1
-    self.batch_size = opt.batch_size or 20
-    self.n_hidden_units = opt.n_hidden_units or 120
+    self.batch_size = opt.batch_size or 35
+    self.n_hidden_units = opt.n_hidden_units or 100
 
     self.swap_target_qnet_every = 1
 
@@ -58,8 +59,8 @@ function DQNAgent:__init(opt)
 
     self.lr_start       = opt.lr or 0.01 --Learning rate.
     self.lr             = self.lr_start
-    self.lr_end         = opt.lr_end or 0.001
-    self.lr_endt        = opt.lr_endt or 10000000
+    self.lr_end         = opt.lr_end or 0.0001
+    self.lr_endt        = opt.lr_endt or 500000--10000000
     self.wc             = opt.wc or 0.000001  -- L2 weight cost.
 
 
@@ -82,8 +83,9 @@ function DQNAgent:__init(opt)
 
     self.current_tderr = 0
 
-    self.average_reward = -3
-    self.average_reward_history = {self.average_reward}
+    self.average_reward = nil
+    self.average_reward_hist = CircularBuffer(10000)
+    self.tderr_hist = CircularBuffer(10000)
 
     self.s = torch.Tensor()
     self.a = nil
@@ -163,7 +165,7 @@ function DQNAgent:act(s, greedy)
 
     local a
     if greedy then
-        a = self:select_egreedy(qs)
+        a = self:select_greedy(qs)
     else
         a = self:select_egreedy(qs)
     end
@@ -196,9 +198,11 @@ function DQNAgent:perceive(obs)
         if self.average_reward == nil then
             self.average_reward = obs.r
         else
-            self.average_reward = self.average_reward * 0.999 + obs.r * 0.001
-            --self.average_reward_history[self.n_steps] = {self.n_steps, math.random()}
-            --print("all right?" .. self.average_reward_history[self.n_steps][2])
+            self.average_reward = self.average_reward * 0.999 + self.r* 0.001
+        end
+
+        if self.n_steps%100==0 then
+            self.average_reward_hist:insert(self.average_reward)
         end
     
 
@@ -212,11 +216,21 @@ function DQNAgent:perceive(obs)
         if self.eta > 0 then
             local trans_batch = {s = torch.zeros(1,self.state_dim):copy(self.s), a = torch.Tensor({self.a}), r = torch.Tensor({self.r}), ns = torch.zeros(1,self.state_dim):copy(self.ns)}
             tderror = self:learnFromTransition(trans_batch)
-            --print("tderr: " .. tderror)
-            if self.replay_mem.n_entries > 2 then
-                trans_batch = self.replay_mem:sample(1,true)--self.replay_mem:getRecent(1)
-                self:learnFromTransition(trans_batch)
+            
+
+            if self.n_steps%100==0 then
+                self.tderr_hist:insert(tderror)
             end
+
+            --print("tderr: " .. tderror[1])
+            -- if self.replay_mem.n_entries > 2 then
+            --     trans_batch = self.replay_mem:sample(2,true)--self.replay_mem:getRecent(1)
+            --     self:learnFromTransition(trans_batch)
+            -- end
+
+            -- if self.n_steps%self.swap_target_qnet_every == 0 then
+            --     self.target_qnet = self.qnet:clone('weight','bias')
+            -- end
         end
         --  and math.abs(tderror) >= 0.00001 
         if self.experience_count_down == 0 then
@@ -333,7 +347,7 @@ function DQNAgent:RMSPropUpdate(trans_batch,targets)
     self.tmp:cmul(self.g, self.g)
     self.tmp:mul(-1)
     self.tmp:add(self.g2)
-    self.tmp:add(0.001) -- 0.01
+    self.tmp:add(0.0001) -- 0.01
     self.tmp:sqrt()
 
     -- accumulate update
