@@ -87,14 +87,14 @@ function DQNAgent:__init(opt)
     self.average_reward_hist = CircularBuffer(10000)
     self.tderr_hist = CircularBuffer(10000)
 
-    self.s = torch.Tensor()
+    self.s = torch.Tensor(self.state_dim)
     self.a = nil
     self.r = nil
     self.nr = nil
-    self.ns = torch.Tensor()
+    self.ns = torch.Tensor(self.state_dim)
     self.na = nil
 
-    self.recent_qs = torch.Tensor()
+    self.recent_qs = torch.Tensor(self.n_actions)
 
 
 
@@ -184,6 +184,7 @@ function DQNAgent:act(s, greedy)
     self.a = self.na
     self.na = torch.Tensor({a})[1]
 
+    --a = env.action_space:sample()
     return a
 
 end
@@ -260,7 +261,7 @@ function DQNAgent:computeUpdate(trans_batch)
     a = trans_batch.a
     ns = trans_batch.ns
 
-    -- delta = r + gamma* max_a' q_target(s',a') - q(s,a)
+    -- delta(s,a,r,s') = r + gamma* max_a' q_target(s',a') - q(s,a)
     delta = r:clone()
     
     local target_qs = self.target_qnet:forward(ns)
