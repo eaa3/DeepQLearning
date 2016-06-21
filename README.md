@@ -12,7 +12,7 @@ The DQNAgent implemented in this project is a simplified version of the original
 
 The big difference between Mnih's work and the toy examples implemented in this project is that we are not learning from pixel data, but we actually could if we wanted to!
 
-The word "Deep" in machine learning literature stems from the fact that we can learn useful features to use directly from raw input (e.g. images), as opposed to having to engineer them. Nonetheless, in these simplified demos presented here we are, instead, specifying low level input features representing the state of underlying simulated environments. In this setup, we can easily specify handmade features that capture well, if not exactly, the state of the environment. However, keep in mind that this might not always be the case. 
+The word "Deep" in machine learning literature stems from the fact that we can learn useful features to use directly from raw input (e.g. images), as opposed to having to engineer them. Nonetheless, in these simplified demos presented here we are, instead, specifying low level input features representing the state of underlying simulated environments. In this simple setup, we can easily specify handmade features that capture well, if not exactly, the state of the environment. However, keep in mind that this might not always be the case. 
 This is important to understand, otherwise the "Deep" buzzword becomes a bit confusing. It is good for you to know that if you ever find yourself with no idea of what features to use, you can "simply" add more layers on your network, convolutional layers in the case of images, for example, which will naturally learn meaninful features in an end-to-end fashion via gradient descent.
 
 # Dependency list
