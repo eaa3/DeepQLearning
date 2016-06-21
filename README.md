@@ -57,14 +57,25 @@ If you want to train your own agents, simply modify the provided scripts. These 
 
 ## Demos implemented so far
 
-#### PuckWorld
+### PuckWorld
+
+#### Description
+
+todo...
+
+
 ![Puck World](https://github.com/eaa3/DeepQLearning/raw/master/gifs/puckworld.gif)
 
-#### WaterWorld
+### WaterWorld
+
+#### Description
+
+todo...
+
+![Water World](https://github.com/eaa3/DeepQLearning/raw/master/gifs/waterworld.gif)
 
 
-
-#### Coming soon
+### Coming soon
 
 * wait for it... :D
 
