@@ -36,7 +36,7 @@ This is important to understand, otherwise the "Deep" buzzword becomes a bit con
 
 # Running instructions for OSX
 
-These instructions are targeted for OSX, but they should be very similar for Linux too! (Working in progress)
+These instructions are targeted for OSX, but they should be very similar for Linux too! (Work in progress)
 
 You will first need to install torch7 follwoing the instructions on the [torch7 website][2].
 
