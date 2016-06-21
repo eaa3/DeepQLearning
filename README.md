@@ -61,3 +61,7 @@ If you want to train your own agents, simply modify the provided scripts. These 
 
 ## Coming soon
 
+## License
+
+MIT.
+
