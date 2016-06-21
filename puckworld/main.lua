@@ -57,6 +57,10 @@ function love.load()
    speed_idx = 1
    steps_per_iter = {1,10,50,100,500,1000,10000,0}
 
+   if #args > 1 then
+    agent:load(args[2])
+    agent.eta = -1
+   end
 
    win_average_reward = nil
    win_tderr = nil
