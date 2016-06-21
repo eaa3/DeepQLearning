@@ -85,7 +85,7 @@ In this demo the agent has to avoid the green moving circles (poisonous food), a
 
 #### Description
 
-* **State space**: at each time step the agent can sense the environment via 30 antenas or range sensors that can measure the distance **d**, velocity **(fvx,fvy)** and type **(wall,green or red circle)** of the object up to a certain limit distance, as depicted below. In addition to that, the agent has access to its own velocity **(vx,vy)**. This gives a total of 30x6 + 2 = 182 vector representing our state space at each time step.
+* **State space**: at each time step the agent can sense the environment via 30 antenas or range sensors that can measure the distance **d**, velocity **(fvx,fvy)** and type **(wall,green or red circle)** of the object up to a certain limit distance, as depicted below. In addition to that, the agent has access to its own velocity **(vx,vy)**. This gives a total of 30x6 + 2 = 182 dimensional vector representing our state space at each time step.
 * **Action space**: there are **4** possible actions that the agent can choose from at each time step. The agent can apply a fixed force to the left, right, up or down.
 * **Reward function**: the agent receives a positive reward when it touches a red circle, and a negative reward when it touches a green circle.
 
