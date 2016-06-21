@@ -3,13 +3,14 @@ This readme is under construction... :)!
 
 # Deep Q Learning with love(2d)
 
-I was so amazed when I read the simple toy examples implemented by [Karpathy][1] in javascript that I decided to implement the same examples using torch7 with lua. In addition to that I wanted to practise what I learnet in the freely available [machine learning course][9] given by professor Nando de Freitas.
+I had just finished the [machine learning course][9] given by professor Nando de Freitas, which he has kindly made available online, when I've seen the toy examples implemented by [Karpathy][1] in javascript. I was so amazed that I decided to implement the same examples using torch7 with lua.
+Deep Learning and Reinforcement Learning are extremely exciting areas in Machine Learning, with a tremendous potential for applications in many other domains. I am particularly interested in applications in robot perception and manipulation. So, I have implemented these demos in order to get my head around the most recent developments in the area, giving me a good toolbox to think about my own research. I am also making it available to everyone else who wants to learn more about it :)!
 
-This is a toy implementation of the Deep Q Network (DQN) algorithm as an attempt to reproduce the same results as Karpathy did in his demos. 
+This is a toy implementation of the Deep Q Network (DQN) algorithm as an attempt to reproduce the same results as Karpathy did in [his demos][1]. 
 
-DQNAgent implements the DQN algorithm proposed by [Mnih][8] et al.
+The DQNAgent implemented in this project is a simplified version of the original DQN algorithm proposed by [Mnih][8] et al.
 
-A big difference between Mnih's work and the toy examples implemented in this project is that we are not learning from pixel data. The word "Deep" in machine learning litterature stems from the fact that we can learn useful features to use directly from the raw input (e.g. images). Instead, we are specifying low level input features representing the state of underlying simulated environment, such as in [Karpathy][1] demos. However, this is actually enough to extract the power of neural networks as function approximators in the DQN algorithm.Since our examples in this project are simple, we can easily specify handmade features that capture well the state of the environment. Nonetheless, it is good for you to know that if you ever find yourself with no idea of what features to use, you can simply add more layers on your network, convolutional layers in the case of images, for example, which will naturally learn meaninful features in an end-to-end fashion.
+The big difference between Mnih's work and the toy examples implemented in this project is that we are not learning from pixel data. The word "Deep" in machine learning literature stems from the fact that we can learn useful features to use directly from the raw input (e.g. images), as opposed to having to engineer them. Nonetheless, in these simplified demos we are, instead, specifying low level input features representing the state of underlying simulated environments. Since our examples in this project are simple, we can easily specify handmade features that capture well, if not exactly, the state of the environment. However, keep in mind that this might not always be the case. This is important to understand, otherwise the "Deep" buzzword becomes a bit confusing. It is good for you to know that if you ever find yourself with no idea of what features to use, you can simply add more layers on your network, convolutional layers in the case of images, for example, which will naturally learn meaninful features in an end-to-end fashion via gradient descent.
 
 # Dependency list
 
@@ -61,6 +62,8 @@ If you want to train your own agents, simply modify the provided scripts. These 
 #### WaterWorld
 
 #### Coming soon
+
+* wait for it... :D
 
 # License
 
