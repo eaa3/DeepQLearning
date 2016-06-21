@@ -1,4 +1,6 @@
 
+This readme is under construction... :)!
+
 ## Deep Q Learning with love(2d)
 
 I was so amazed when I read the simple toy examples implemented by [Karpathy][1] in javascript that I decided to implement the same examples using torch7 with lua.
@@ -36,7 +38,19 @@ The last dependency you should install is display. This is a lua rock for plotti
 
 ### Running the demo
 
-To run the pretrained demos you simply need to source the run scripts provided in the main directory of the project. If you want to train your own agents, simply modify the provided scripts. Those scripts are simply passing an optional pretrained Q-Network. If you remove the pretrained network argument, the agent will learn from scratch.
+To run the pretrained demos you simply need to source the run scripts provided in the main directory of the project. 
+
+```
+source run_puckworld_pretrained.bash
+```
+
+or
+
+```
+source run_waterworld_pretrained.bash
+```
+
+If you want to train your own agents, simply modify the provided scripts. These scripts are simply passing an optional pretrained Q-Network. If you remove the pretrained network argument, the agent will start learning from scratch.
 
 
 ## Demos implemented so far
