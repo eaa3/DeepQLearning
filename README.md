@@ -3,8 +3,6 @@
 
 I was so amazed when I read the simple toy examples implemented by Karpathy [link][1] in javascript that I decided to implement the same examples using torch7 with lua.
 
-
-
 This is a toy implementation of the Deep Q Network (DQN) algorithm as an attempt to reproduce the same results as Karpathy did in his demos. 
 
 DQNAgent implements the DQN algorithm proposed by Mnih et al
