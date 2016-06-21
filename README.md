@@ -1,7 +1,7 @@
 
 This readme is under construction... :)!
 
-## Deep Q Learning with love(2d)
+# Deep Q Learning with love(2d)
 
 I was so amazed when I read the simple toy examples implemented by [Karpathy][1] in javascript that I decided to implement the same examples using torch7 with lua.
 
@@ -11,7 +11,7 @@ DQNAgent implements the DQN algorithm proposed by [Mnih][8] et al.
 
 A big difference between Mnih's work and the toy examples implemented in this project is that we are not learning from pixel data. The word "Deep" in machine learning litterature stems from the fact that we can learn useful features to use directly from the raw input (e.g. images). Instead, we are specifying low level input features representing the state of underlying simulated environment, such as in [Karpathy][1] demos. However, this is actually enough to extract the power of neural networks as function approximators in the DQN algorithm.Since our examples in this project are simple, we can easily specify handmade features that capture well the state of the environment. Nonetheless, it is good for you to know that if you ever find yourself with no idea of what features to use, you can simply add more layers on your network, convolutional layers in the case of images, for example, which will naturally learn meaninful features in an end-to-end fashion.
 
-## Dependency list
+# Dependency list
 
 * [Torch7][2]
 * [nn][3]
@@ -27,7 +27,7 @@ A big difference between Mnih's work and the toy examples implemented in this pr
 [7]: https://love2d.org/wiki/Getting_Started
 [8]: https://www.cs.toronto.edu/%7Evmnih/docs/dqn.pdf
 
-## Running instructions for OSX
+# Running instructions for OSX
 
 You will first need to install torch7 follwoing the instructions on the [torch7 website][2].
 
@@ -36,7 +36,7 @@ If you have installed torch7 successfully, you now should install love using thi
 The last dependency you should install is display. This is a lua rock for plotting charts and visualising them via a webbrowser. This way you can watch the performance of the DQN angent over time. You can install display following the instructions on [display][5] github repository.
 
 
-### Running the demo
+## Running the demo
 
 To run the pretrained demos you simply need to source the run scripts provided in the main directory of the project. 
 
@@ -55,13 +55,13 @@ If you want to train your own agents, simply modify the provided scripts. These 
 
 ## Demos implemented so far
 
-### PuckWorld
+#### PuckWorld
 
-### WaterWorld
+#### WaterWorld
 
-## Coming soon
+#### Coming soon
 
-## License
+# License
 
 MIT.
 
