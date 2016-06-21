@@ -1,3 +1,9 @@
+--[[
+@Author: Ermano Arruda
+
+Food can be either poisonous or not
+]]
+
 require 'torch'
 
 local Food = torch.class("Food")

@@ -1,3 +1,9 @@
+--[[
+@Author: Ermano Arruda
+
+A circular buffer for handy for plotting
+]]
+
 require 'torch'
 
 

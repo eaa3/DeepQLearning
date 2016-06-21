@@ -1,3 +1,9 @@
+--[[
+@Author: Ermano Arruda
+
+Useful functions for plotting
+]]
+
 -- disp = require ('plotting.init')
 disp = require 'display'
 require 'plotting.CircularBuffer'

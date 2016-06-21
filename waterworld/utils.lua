@@ -1,3 +1,8 @@
+--[[
+@Author: Ermano Arruda
+
+Utilities to calculate intersection of lines with circles and other lines
+]]
 
 utils = {}
 

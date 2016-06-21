@@ -1,7 +1,7 @@
 --[[
 @Author: Ermano Arruda
 
-An WaterWorld to play with the PuckWorld
+An WaterWorld environemtn to play
 ]]
 
 require 'torch'
