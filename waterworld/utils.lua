@@ -1,5 +1,5 @@
 --[[
-@Author: Ermano Arruda
+@Author: Ermano Arruda (exa371 at bham dot ac dot uk), June 2016
 
 Utilities to calculate intersection of lines with circles and other lines
 ]]

@@ -1,3 +1,9 @@
+--[[
+@Author: Ermano Arruda (exa371 at bham dot ac dot uk), June 2016
+
+Just a simple food class. Food can either be poisonous or not.
+]]
+
 require 'torch'
 
 local Food = torch.class("Food")
