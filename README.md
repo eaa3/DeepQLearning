@@ -3,7 +3,7 @@ This readme is under construction... :)!
 
 # Deep Q Learning with love(2d)
 
-I was so amazed when I read the simple toy examples implemented by [Karpathy][1] in javascript that I decided to implement the same examples using torch7 with lua.
+I was so amazed when I read the simple toy examples implemented by [Karpathy][1] in javascript that I decided to implement the same examples using torch7 with lua. In addition to that I wanted to practise what I learnet in the freely available [machine learning course][9] given by professor Nando de Freitas.
 
 This is a toy implementation of the Deep Q Network (DQN) algorithm as an attempt to reproduce the same results as Karpathy did in his demos. 
 
@@ -26,6 +26,7 @@ A big difference between Mnih's work and the toy examples implemented in this pr
 [6]: https://love2d.org/wiki/Game_Distribution#Creating_a_MacOS_X_App
 [7]: https://love2d.org/wiki/Getting_Started
 [8]: https://www.cs.toronto.edu/%7Evmnih/docs/dqn.pdf
+[9]: https://www.cs.ox.ac.uk/people/nando.defreitas/machinelearning/
 
 # Running instructions for OSX
 
