@@ -29,7 +29,7 @@ function love.conf(t)
 end
 
 
-function love.load()
+function love.load(args)
 
    -- routine = coroutine.create(function ()
    --         os.execute("source plotting/start_server.bash")

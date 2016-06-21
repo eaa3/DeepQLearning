@@ -35,7 +35,7 @@ function love.load(args)
   torch.manualSeed(0)
 
    env = WaterWorld(800,600)
-   love.window.setTitle("Test")
+   love.window.setTitle("WaterWorld")
 
    love.graphics.setNewFont(12)
    love.graphics.setColor(255,255,255)
