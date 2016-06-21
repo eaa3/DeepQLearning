@@ -1,21 +1,21 @@
 
 ## Deep Q Learning with love(2d)
 
-I was so amazed when I read the simple toy examples implemented by Karpathy [link][1] in javascript that I decided to implement the same examples using torch7 with lua.
+I was so amazed when I read the simple toy examples implemented by Karpathy [1][1] in javascript that I decided to implement the same examples using torch7 with lua.
 
 This is a toy implementation of the Deep Q Network (DQN) algorithm as an attempt to reproduce the same results as Karpathy did in his demos. 
 
 DQNAgent implements the DQN algorithm proposed by Mnih et al
 https://www.cs.toronto.edu/%7Evmnih/docs/dqn.pdf
 
-A big difference between Mnih's work and the toy examples implemented in this project is that we are not learning from pixel data. The word "Deep" in machine learning litterature stems from the fact that we can learn useful features to use directly from the raw input (e.g. images). Instead, we are specifying low level input features representing the state of underlying simulated environment, such as in [link][1]. However, this is actually enough to extract the power of neural networks as function approximators in the DQN algorithm.Since our examples in this project are simple, we can easily specify handmade features that capture well the state of the environment. Nonetheless, it is good for you to know that if you ever find yourself with no idea of what features to use, you can simply add more layers on your network, convolutional layers in the case of images, for example, which will naturally learn meaninful features in an end-to-end fashion.
+A big difference between Mnih's work and the toy examples implemented in this project is that we are not learning from pixel data. The word "Deep" in machine learning litterature stems from the fact that we can learn useful features to use directly from the raw input (e.g. images). Instead, we are specifying low level input features representing the state of underlying simulated environment, such as in [1][1]. However, this is actually enough to extract the power of neural networks as function approximators in the DQN algorithm.Since our examples in this project are simple, we can easily specify handmade features that capture well the state of the environment. Nonetheless, it is good for you to know that if you ever find yourself with no idea of what features to use, you can simply add more layers on your network, convolutional layers in the case of images, for example, which will naturally learn meaninful features in an end-to-end fashion.
 
 ## Dependency list
 
-* Torch7 [link][2]
-* nn [link][3]
-* love2d [link][4]
-* display (for plotting)[link][5] 
+* Torch7 [1][2]
+* nn [2][3]
+* love2d [3][4]
+* display (for plotting)[4][5] 
 
 [1]: http://cs.stanford.edu/people/karpathy/reinforcejs/puckworld.html
 [2]: http://torch.ch
