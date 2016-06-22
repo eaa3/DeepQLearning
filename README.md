@@ -90,6 +90,8 @@ You choose the speed the simulation runs by pressing the keys from **1** (normal
 
 You can also pause learning by pressing **a**, or enable learning again by pressing **l**. 
 
+Once you've decided you agent is good enough, you can save it's Q network by pressing **s**. This will serialise the Q network named as qnet.7z. Feel free for contributing with your own improviments and/or pretrained models! Pull requests are welcome!
+
 To pause the simulation you can press **p**. You can try to control the agent after pressing pause to have a feeling what is it like to be the agent! To control the agent you need to use the arrows on your keyboard.You can do experiments to compare your performance plots with the ones of your best trained agent! Can you beat him? 
 
 ## Demos implemented so far
