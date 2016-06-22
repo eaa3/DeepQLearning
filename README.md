@@ -10,7 +10,7 @@ This is a toy implementation of the Deep Q Network (DQN) algorithm as an attempt
 
 The DQNAgent implemented in this project is a simplified version of the original DQN algorithm proposed by [Mnih][8] et al.
 
-The big difference between Mnih's work and the toy examples implemented in this project is that we are not learning from pixel data, but we actually could if we wanted to!
+The big difference between Mnih's work and the toy examples implemented in this project is that we are not learning from pixel data, but we actually could if we wanted to! (It would just take a bit longer to train :X)
 
 The word "Deep" in machine learning literature stems from the fact that we can learn useful features to use directly from raw input (e.g. images), as opposed to having to engineer them. Nonetheless, in these simplified demos presented here we are, instead, specifying low level input features representing the state of underlying simulated environments. In this simple setup, we can easily specify handmade features that capture well, if not exactly, the state of the environment. However, keep in mind that this might not always be the case. 
 This is important to understand, otherwise the "Deep" buzzword becomes a bit confusing. It is good for you to know that if you ever find yourself with no idea of what features to use, you can "simply" add more layers on your network, convolutional layers in the case of images, for example, which will naturally learn meaninful features in an end-to-end fashion via gradient descent.
@@ -47,7 +47,15 @@ The last dependency you should install is display. This is a lua rock for plotti
 
 ## Running the demo
 
-To run the pretrained demos you simply need to source the run scripts provided in the main directory of the project. 
+Before actually running the demos, if you have installed the lua rock display and want to see the plots for the temporal difference error (TD) and average reward over time, you will need to run the plotting server first. You can open a separate terminal and from the main directory of the project you can run:
+
+```
+source plotting/start_server.bash
+```
+
+This will start a server and allow you to see the plots on your browser when running the demos using your localhost address http://127.0.0.1:8000.
+
+To run the pretrained demos you simply open a new terminal, and in the root folder of the project you can source the run scripts:
 
 ```
 source run_puckworld_pretrained.bash
@@ -59,8 +67,30 @@ or
 source run_waterworld_pretrained.bash
 ```
 
-If you want to train your own agents, simply modify the provided scripts. These scripts are simply passing an optional pretrained Q-Network. If you remove the pretrained network argument, the agent will start learning from scratch.
+If you want to train your own agents, you can instead run: 
 
+```
+source run_puckworld.bash
+```
+
+or for the water world
+
+```
+source run_water_world.bash
+```
+
+You should be able to watch the agent playing around on your screen now. And also watch its performance on your browser as below.
+
+![Demo setup](https://github.com/eaa3/DeepQLearning/raw/master/gifs/plotting.gif)
+
+
+Addional features:
+
+You choose the speed the simulation runs by pressing the keys from **1** (normal speed) to **7** (extremely fast), essentially changing the number of time step updates per iteration.
+
+You can also pause learning by pressing **a**, or enable learning again by pressing **l**. 
+
+To pause the simulation you can press **p**. You can try to control the agent after pressing pause to have a feeling what is it like to be the agent! To control the agent you need to use the arrows on your keyboard.You can do experiments to compare your performance plots with the ones of your best trained agent! Can you beat him? 
 
 ## Demos implemented so far
 
@@ -75,7 +105,7 @@ This is a reproduction of the PuckWorld demo implemented by [Karpathy][1].
 * **Reward function**: the agent is punished with negative reward the farther away it is from the green target. It also receives extra punishement for entering the radius of effect of enemy in red. This makes the agent learn to avoid the red enemy, while at the same time trying to keep as close as possible to the green target.
 
 
-![Puck World](https://github.com/eaa3/DeepQLearning/raw/master/gifs/puckworld.gif)
+![Puck World](https://github.com/eaa3/DeepQLearning/raw/master/gifs/puckworld_short.gif)
 
 ### WaterWorld
 
@@ -89,7 +119,7 @@ In this demo the agent has to avoid the green moving circles (poisonous food), a
 * **Action space**: there are **4** possible actions that the agent can choose from at each time step. The agent can apply a fixed force to the left, right, up or down.
 * **Reward function**: the agent receives a positive reward when it touches a red circle, and a negative reward when it touches a green circle.
 
-![Water World](https://github.com/eaa3/DeepQLearning/raw/master/gifs/waterworld.gif)
+![Water World](https://github.com/eaa3/DeepQLearning/raw/master/gifs/waterworld_short.gif)
 
 
 ### Coming soon
