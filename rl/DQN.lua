@@ -288,9 +288,20 @@ function DQNAgent:computeUpdate(trans_batch)
     local batch_size = trans_batch.a:size(1)
     local targets = torch.zeros(batch_size, self.n_actions)
     for i=1, batch_size do
-        targets[i][a[i]] = delta[i] -- I thought we should use qs, instead of those targets, why?
+        -- for each transision i in the batch, target = [0 0 0 ... 0 delta(s_i,a_i,r_i,s'_i) 0 ... 0] 
+        -- if we were to perform a Bellman update on this considered current qnet output for q(s_i,a_i)
+        -- target_q(s,a) = delta[i] = E_s'[r + gamma* max_a' q_target(s',a')]
+        -- this should be the value that q(s_i,a_i) should have
+        -- note that target_q(s) = [0, 0, ..., target_q(s,a_i), ..., 0], if we index this network output by all possible actions.
+        targets[i][a[i]] = delta[i]
     end
 
+    -- targets = [0, 0, ..., target_q(s1,a1_i), ..., 0]
+    --           [0, 0, ..., target_q(s2,a2_j), ..., 0]
+    --           [0, 0, ..., target_q(s3,a3_u), ..., 0]
+    --           ...
+    --           [0, 0, ..., target_q(s_k,ak_l), ..., 0]
+    -- where k = batch_size
 
     return delta, targets
 
