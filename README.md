@@ -22,18 +22,6 @@ This is important to understand, otherwise the "Deep" buzzword becomes a bit con
 * [love2d][4]
 * [display][5] (for plotting)
 
-[1]: http://cs.stanford.edu/people/karpathy/reinforcejs/index.html
-[2]: http://torch.ch
-[3]: https://github.com/torch/nn
-[4]: https://love2d.org/wiki/Main_Page
-[5]: https://github.com/szym/display
-[6]: https://love2d.org/wiki/Game_Distribution#Creating_a_MacOS_X_App
-[7]: https://love2d.org/wiki/Getting_Started
-[8]: https://www.cs.toronto.edu/%7Evmnih/docs/dqn.pdf
-[9]: https://www.cs.ox.ac.uk/people/nando.defreitas/machinelearning/
-[10]: https://github.com/kuz/DeepMind-Atari-Deep-Q-Learner
-[11]: https://github.com/karpathy/reinforcejs
-[12]: https://en.wikipedia.org/wiki/One-hot
 
 # Running instructions for OSX
 
@@ -127,8 +115,23 @@ In this demo the agent has to avoid the green moving circles (poisonous food), a
 
 ### Coming soon
 
+
 * wait for it... :D
 
 # License
 
 MIT.
+
+
+[1]: http://cs.stanford.edu/people/karpathy/reinforcejs/index.html
+[2]: http://torch.ch
+[3]: https://github.com/torch/nn
+[4]: https://love2d.org/wiki/Main_Page
+[5]: https://github.com/szym/display
+[6]: https://love2d.org/wiki/Game_Distribution#Creating_a_MacOS_X_App
+[7]: https://love2d.org/wiki/Getting_Started
+[8]: https://www.cs.toronto.edu/%7Evmnih/docs/dqn.pdf
+[9]: https://www.cs.ox.ac.uk/people/nando.defreitas/machinelearning/
+[10]: https://github.com/kuz/DeepMind-Atari-Deep-Q-Learner
+[11]: https://github.com/karpathy/reinforcejs
+[12]: https://en.wikipedia.org/wiki/One-hot
