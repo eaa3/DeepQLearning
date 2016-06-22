@@ -33,6 +33,7 @@ This is important to understand, otherwise the "Deep" buzzword becomes a bit con
 [9]: https://www.cs.ox.ac.uk/people/nando.defreitas/machinelearning/
 [10]: https://github.com/kuz/DeepMind-Atari-Deep-Q-Learner
 [11]: https://github.com/karpathy/reinforcejs
+[12]: https://en.wikipedia.org/wiki/One-hot
 
 # Running instructions for OSX
 
@@ -90,9 +91,9 @@ You choose the speed the simulation runs by pressing the keys from **1** (normal
 
 You can also pause learning by pressing **a**, or enable learning again by pressing **l**. 
 
-Once you've decided you agent is good enough, you can save it's Q network by pressing **s**. This will serialise the Q network named as qnet.7z. Feel free for contributing with your own improviments and/or pretrained models! Pull requests are welcome!
+Once you've decided your agent is good enough, you can save it by pressing **s**. This will serialise the agent's Q network named as a file qnet.7z, which you can load by modifying the provided scripts. Feel free for contributing with your own improviments and/or pretrained models! Pull requests are welcome!
 
-To pause the simulation you can press **p**. You can try to control the agent after pressing pause to have a feeling what is it like to be the agent! To control the agent you need to use the arrows on your keyboard.You can do experiments to compare your performance plots with the ones of your best trained agent! Can you beat him? 
+To pause the simulation you can press **p**. You can try to control the agent after pressing pause to have a feeling what it is like to be the agent! To control the agent you need to use the arrows on your keyboard.You can do experiments to compare your performance plots with the ones of your best trained agent! Can you beat it? 
 
 ## Demos implemented so far
 
@@ -117,7 +118,7 @@ In this demo the agent has to avoid the green moving circles (poisonous food), a
 
 #### Description
 
-* **State space**: at each time step the agent can sense the environment via 30 antenas or range sensors that can measure the distance **d**, velocity **(fvx,fvy)** and type **(wall,green or red circle)** of the object up to a certain limit distance, as depicted below. In addition to that, the agent has access to its own velocity **(vx,vy)**. This gives a total of 30x6 + 2 = 182 dimensional vector representing our state space at each time step.
+* **State space**: at each time step the agent can sense the environment via 30 antenas or range sensors that can measure the distance **d**, velocity **(fvx,fvy)** and type **(wall,green or red circle)** of the object up to a certain limit distance, as depicted below. In addition to that, the agent has access to its own velocity **(vx,vy)**. Since I am representing the type of sensed object as a [one-hot][12] vector, this gives a total of 30x6 + 2 = 182 dimensional vector representing our state space at each time step.
 * **Action space**: there are **4** possible actions that the agent can choose from at each time step. The agent can apply a fixed force to the left, right, up or down.
 * **Reward function**: the agent receives a positive reward when it touches a red circle, and a negative reward when it touches a green circle.
 
