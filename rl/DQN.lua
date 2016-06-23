@@ -36,6 +36,7 @@ function DQNAgent:__init(opt)
 
     self.gamma = opt.gamma or 0.9
     self.eta = opt.eta or 0.001
+    self.update_type = opt.update_type or "gdw" -- gradient descent with weight decay
 
     self.episilon = opt.episilon or 0.2
     self.eps_start = opt.eps_start or 0.2
@@ -316,8 +317,11 @@ function DQNAgent:learnFromTransition(transition)
     
     local mean_tderror = delta:mean()
 
-    self:RMSPropUpdate(transition,targets)
-    --self:SimpleGradientUpdate(transition,targets)
+    if self.update_type == "gdw" then
+        self:SimpleGradientUpdate(transition,targets)
+    else
+        self:RMSPropUpdate(transition,targets)
+    end
 
     return mean_tderror
 
@@ -327,9 +331,9 @@ function DQNAgent:SimpleGradientUpdate(trans_batch,targets)
 
     self.dw:zero()
     self.qnet:backward(trans_batch.s,targets)
-    
-    self.dw:add(-0.01, self.w) -- Weight decay
-    self.w:add(-self.eta, self.dw)
+
+    self.dw:add(-self.wc, self.w) -- Weight decay
+    self.w:add(self.eta, self.dw)
 end
 
 function DQNAgent:RMSPropUpdate(trans_batch,targets)
@@ -337,7 +341,6 @@ function DQNAgent:RMSPropUpdate(trans_batch,targets)
     self.dw:zero()
     self.qnet:backward(trans_batch.s,targets)
 
-    -- add weight cost to gradient
     self.dw:add(-self.wc, self.w)
 
     -- compute linearly annealed learning rate
@@ -380,8 +383,11 @@ function DQNAgent:qLearnMiniBatch()
             self.tderr_avg = delta:clone():abs():mean()
             self.current_tderr = delta:mean()
 
-            self:RMSPropUpdate(trans_batch,targets)
-            --self:SimpleGradientUpdate(trans_batch,targets)
+            if self.update_type == "gdw" then
+                self:SimpleGradientUpdate(trans_batch,targets)
+            else
+                self:RMSPropUpdate(trans_batch,targets)
+            end
 
         end
 
