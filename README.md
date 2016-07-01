@@ -23,13 +23,22 @@ This is important to understand, otherwise the "Deep" buzzword becomes a bit con
 * [display][5] (for plotting)
 
 
-# Running instructions for OSX
+# Running instructions
 
 These instructions are targeted for OSX, but they should be very similar for Linux too! (Work in progress)
 
 You will first need to install torch7 follwoing the instructions on the [torch7 website][2].
 
-If you have installed torch7 successfully, you now should install love using this [link][6]. This application is responsible for running games written using love2d game engine. You will also need to create an alias for the love application. Creating an alias you will allow you to call love command from the terminal. The instructions for that can be found [here][7].
+If you have installed torch7 successfully, you now should download the Love game engine using this [link][6]. This application is responsible for running games written using Love 2d game engine. You will also need to create an alias for the love application. Creating an alias you will allow you to call ```love``` from the terminal. The instructions for that can be found [here][7]. 
+
+Alternatively, if you're on OSX, you can run the ```configure.bash``` script I have prepared:
+
+```
+source configure.bash
+```
+
+This will download the Love game engine and do all the set up I described for you. The Love game engine will be in the folder called ```dependencies```.
+
 
 The last dependency you should install is display. This is a lua rock for plotting charts and visualising them via a webbrowser. This way you can watch the performance of the DQN angent over time. You can install display following the instructions on [display][5] github repository.
 
@@ -124,11 +133,11 @@ MIT.
 
 
 [1]: http://cs.stanford.edu/people/karpathy/reinforcejs/index.html
-[2]: http://torch.ch
+[2]: http://torch.ch/docs/getting-started.html#_
 [3]: https://github.com/torch/nn
 [4]: https://love2d.org/wiki/Main_Page
 [5]: https://github.com/szym/display
-[6]: https://love2d.org/wiki/Game_Distribution#Creating_a_MacOS_X_App
+[6]: https://love2d.org
 [7]: https://love2d.org/wiki/Getting_Started
 [8]: https://www.cs.toronto.edu/%7Evmnih/docs/dqn.pdf
 [9]: https://www.cs.ox.ac.uk/people/nando.defreitas/machinelearning/
