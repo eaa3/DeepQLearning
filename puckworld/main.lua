@@ -49,6 +49,15 @@ function love.load(args)
    -- for saving screen shots
    love.filesystem.setIdentity('screenshots')
 
+   opt = {state_dim=env:getStateDim(), 
+          n_actions=env:getNActions(),
+          batch_size=35,
+          lr = 0.01,
+          lr_endt = 500000,
+          n_hidden_units = 100,
+          update_type = "rmsprop"
+   }
+
    agent = DQNAgent({state_dim=env:getStateDim(), n_actions=env:getNActions()})
 
    s = env:getState()

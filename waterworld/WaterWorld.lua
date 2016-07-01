@@ -6,7 +6,7 @@ An WaterWorld environemtn to play
 
 require 'torch'
 require 'math'
-require 'Environment'
+require 'rl.Environment'
 require 'utils'
 
 local WaterWorld = torch.class('WaterWorld','Environment')

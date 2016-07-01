@@ -46,7 +46,8 @@ function love.load(args)
           batch_size=100,
           lr = 0.002,
           lr_endt = 1000,
-          n_hidden_units = 100
+          n_hidden_units = 100,
+          update_type = "rmsprop"
           }
    agent = DQNAgent(opt)
 
