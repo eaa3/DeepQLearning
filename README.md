@@ -29,7 +29,7 @@ These instructions are targeted for OSX, but they should be very similar for Lin
 
 You will first need to install torch7 follwoing the instructions on the [torch7 website][2].
 
-If you have installed torch7 successfully, you now should download the Love game engine using this [link][6]. This application is responsible for running games written using Love 2d game engine. You will also need to create an alias for the love application. Creating an alias you will allow you to call ```love``` from the terminal. The instructions for that can be found [here][7]. 
+If you have installed torch7 successfully, you now should download the Love game engine using this [link][6]. This application is responsible for running games that require the Love 2d game engine. You will also need to create an alias for the ```love``` application. Creating an alias you will allow you to call ```love``` from the terminal. The instructions for that can be found [here][7]. 
 
 Alternatively, if you're on OSX, you can run the ```configure.bash``` script I have prepared:
 
